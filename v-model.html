@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+        <label> Escribe tu nombre</label>
+        <input type="text" v-model="nombre">
+        <hr>
+        <h5>hola {{ nombre }}</h5>
+        <hr>
+        <select v-model="fruta">
+            <option value="Manzana"> Manzana</option>
+            <option value="fresa"> Fresa</option>
+            <option value="piña"> Piña</option>
+        </select>
+
+        <h5>fruta seleccionada {{ fruta }}</h5>
+
+    </div>
+    <script>
+        //si hago un cambio dentro de mi propiedad que el cambio se refleje en mi aplicacion , pero si hago un cambio dentro de mi aplicacion se refleje ese cambio en mi propiedad    
+        const holaMundo = {
+            data(){
+                return{
+                   nombre:"",
+                   fruta:""
+                }
+            },
+            
+        }
+
+        var mounteApp = Vue.createApp(holaMundo).mount('#app')
+    </script>
+
+</body>
+</html>

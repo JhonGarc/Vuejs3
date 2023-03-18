@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>        
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+        <input type="text" v-bind:disabled="txtDisabled">
+        <input type="text" v-bind:disabled="usuarios == 5">
+
+        <hr>
+        <form method="POST ">
+            <input type="text" :required="obligatorio">
+            <button type="submit"> Enviar</button>
+        </form>
+    </div>
+    <script>
+        //v-if v-show mostrar condicionalmente un objeto, con v-show solo es como si estuvieramos utilizando css para ocultar el objeto
+      const app = {
+        data() {
+          return {
+                txtDisabled: false,
+                usuarios: 5,
+                chkChecked: false,
+                obligatorio: false
+          };
+        },
+        methods:{
+
+        }
+        
+      };
+
+      var mounteApp = Vue.createApp(app).mount("#app");
+    </script>
+  </body>
+</html>
+

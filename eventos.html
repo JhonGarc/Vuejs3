@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>        
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+        <button class="btn indigo darken-4" v-on:click="evento">haz click</button>
+        <div> {{ contador }}</div>
+        <hr>
+        <button class="btn indigo darken-4" v-on:mouseout = " estado = !estado" v-on:mouseover="estado = !estado">coloca el puntero</button>
+        {{estado }}
+        <hr>
+        <img src="css.png" alt="" v-if= "estado">
+        <select v-on:change="cambiarImagen($event)" class="browser-default">
+            <option value="css.png">CSS</option>
+            <option value="js.png">JS</option>
+        </select>
+        <img :src="imagen" alt="Imagen seleccionada">
+    </div>
+    <script>
+        //v-on:click = "nombre metodo"
+        //@click vendria siendo lo mismo
+      const app = {
+        data() {
+          return {
+                contador: 0,
+                estado: false,
+                imagen: ''
+          };
+        },
+        methods:{
+            evento(){
+                this.contador ++
+            },
+            cambiarImagen(event){
+                //event hace referencia al objeto que esta ejecutando ese metodo
+                this.imagen = event.target.value
+            }
+        },
+        
+      };
+
+      var mounteApp = Vue.createApp(app).mount("#app");
+    </script>
+  </body>
+</html>
+

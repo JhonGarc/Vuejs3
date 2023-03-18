@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+     <!-- Compiled and minified CSS -->
+     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+     <!-- Compiled and minified JavaScript -->
+     <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+             
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+      <table class="table striped bordered">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Usuario</th>
+                <th>Correo</th>
+                <th>Direccion</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr v-for="usuario in usuarios" :key="usuario.id">
+                <td>{{ usuario.name }}</td>
+                <td>{{ usuario.username }}</td>
+                <td>{{ usuario.email }}</td>
+                <td>{{ usuario.address.city }}</td>
+            </tr>
+        </tbody>
+      </table>
+
+     
+    </div>
+    <script>
+      const holaMundo = {
+        data() {
+          return {
+            usuarios: []
+          };
+        },
+        methods:{
+            getUsers(){
+                fetch('https://jsonplaceholder.typicode.com/users')
+                .then(response => response.json())
+                .then(data => {
+                    this.usuarios = data
+                })
+            }
+        },
+        mounted(){
+            this.getUsers()
+        }
+      };
+
+      var mounteApp = Vue.createApp(holaMundo).mount("#app");
+    </script>
+  </body>
+</html>

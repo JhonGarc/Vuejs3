@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Document</title>
+  </head>
+  <body>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+    <div id="app">
+      contador : {{contador}}
+      <button type="button" v-on:click="stopInterval">{{btnMsg}}</button>
+    </div>
+    <script>
+      //data, methods , props, mounted, created, computed, watch, destroyed
+
+      //data = datos de la aplicacion
+      //props = propiedades compartidas
+      //computed = datos calculados
+      //watch = va a observar el valor de alguna variable o componente
+      //mounted = evento que se ejecuta una vez se haya montado la aplicación
+      const holaMundo = {
+        data() {
+          return {
+            contador: 0,
+            interval: null,
+            isRunnig: false,
+            btnMsg: "detener"
+          };
+        },
+        mounted() {
+          this.interval = setInterval(() => {
+            this.contador++;
+          }, 1000);
+          this.isRunnig = true;
+          this.btnMsg = "detener"
+        },
+        methods: {
+          stopInterval() {
+            if (this.isRunnig) {
+              clearInterval(this.interval);
+              this.isRunnig = false
+              this.btnMsg = "iniciar"
+            } else {
+              this.interval = setInterval(() => {
+                this.contador++;
+              }, 1000);
+              this.isRunnig = true;
+              this.btnMsg = "detener"
+              
+            }
+          },
+        },
+      };
+
+      var mounteApp = Vue.createApp(holaMundo).mount("#app");
+    </script>
+  </body>
+</html>
